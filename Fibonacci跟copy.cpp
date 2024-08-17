@@ -10,10 +10,11 @@ void copy(int *begin, int *end, int *result)
 
     for (int *p = begin; p != end; p++) 
     {
-        *(result + index++) = *p;
+        *(result + index++) = *p;//複製到 result。
     }
 
-    *(result + index++) = 0;//result 陣列的最後一個位置設置為 0。擴展 result 陣列的大小，預留空間。
+    *(result + index++) = 0;
+    //result 陣列的最後一個位置設置為 0。擴展 result 陣列的大小，預留空間。
 }
 
 int *DP;//動態分配的整數陣列，用於存儲已計算的 Fibonacci 數值
