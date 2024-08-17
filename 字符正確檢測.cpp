@@ -3,6 +3,15 @@
 #include <string>
 using namespace std;
 
+/*
+堆疊的初始化：創建一個空的堆疊 s 用來存儲括號。
+遍歷字串：逐字元檢查字串中的每個字符 ch。
+遇到開括號：如果遇到 (、[ 或 {，則將其推入堆疊。
+遇到閉括號：
+檢查堆疊是否為空。如果為空，表示沒有對應的開括號，返回 false。
+如果不匹配，返回 false。
+如果匹配，將堆疊頂部元素彈出。
+*/
 // 函數來檢查括號字符串是否正確
 bool isValid(const string& str) 
 {
@@ -12,19 +21,19 @@ bool isValid(const string& str)
         switch (ch) 
         {
             case '(': case '[': case '{':
-                s.push(ch); // 推入栈中
+                s.push(ch); // 如果是開括號，將其推入堆疊
                 break;
             case ')':
                 if (s.empty() || s.top() != '(') return false;
-                s.pop(); // 彈出栈頂元素
+                s.pop(); //如果是閉括號且匹配堆疊頂部的開括號，將堆疊頂部元素彈出
                 break;
             case ']':
                 if (s.empty() || s.top() != '[') return false;
-                s.pop(); // 彈出栈頂元素
+                s.pop(); //如果是閉括號且匹配堆疊頂部的開括號，將堆疊頂部元素彈出
                 break;
             case '}':
                 if (s.empty() || s.top() != '{') return false;
-                s.pop(); // 彈出栈頂元素
+                s.pop(); //如果是閉括號且匹配堆疊頂部的開括號，將堆疊頂部元素彈出
                 break;
             default:
                 return false; // 如果遇到其他字符，返回錯誤
