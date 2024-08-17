@@ -4,15 +4,15 @@
 #include <iostream>
 
 using namespace std;
-
-void swap(int &x, int &y) //交換兩個整數變數 x 和 y 的值。
+//交換兩個整數變數 x 和 y 的值。
+void swap(int &x, int &y) 
 {
     int temp = x;
     x = y;
     y = temp;
 }
-
-void swap_(int *x, int *y) //交換兩個整數指針所指向的值
+//交換兩個整數指針所指向的值
+void swap_(int *x, int *y) 
 {
     int temp = *x;
     *x = *y;
@@ -25,10 +25,11 @@ int main()
     int n, m;
     cin >> n >> m;//n 表示陣列的大小，m 表示交換的次數。
     int *arr = new int[n];//動態分配一個大小為 n 的整數陣列 arr。
-    for (int i = 0; i < n; i++) cin >> arr[i];//讀取 n 個整數並填充到 arr 陣列中。
+    //讀取 n 個整數並填充到 arr 陣列中。
+    for (int i = 0; i < n; i++) cin >> arr[i];
 
-    // swap process
-    for (int i = 0; i < m; i++) //循環 m 次，每次讀取兩個整數 x 和 y，表示需要交換 arr 陣列中索引為 x 和 y 的兩個元素。
+    //循環 m 次，每次讀取兩個整數 x 和 y，表示需要交換 arr 陣列中索引為 x 和 y 的兩個元素。
+    for (int i = 0; i < m; i++) 
     {
         int x, y;
         cin >> x >> y;
