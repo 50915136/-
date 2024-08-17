@@ -20,11 +20,13 @@ int binarySearch(const vector<int>& arr, int target)
         }
         else if (arr[mid] < target) 
         {
-            left = mid + 1; // 搜尋右半部分
+            left = mid + 1; 
+            // 目標值必定在右半部分，將 left 指標移至 mid + 1。
         }
         else 
         {
             right = mid - 1; // 搜尋左半部分
+            //目標值必定在左半部分，將 right 指標移至 mid - 1。
         }
     }
 
@@ -33,15 +35,15 @@ int binarySearch(const vector<int>& arr, int target)
 
 int main() 
 {
-    int numTestCases;
+    int numTestCases;//接下來要進行的測試次數。
     cin >> numTestCases;
 
     while (numTestCases--) 
     {
-        int length;
+        int length;//陣列的長度
         cin >> length;
 
-        vector<int> arr(length);
+        vector<int> arr(length);//長度為 length 的向量 arr
         for (int i = 0; i < length; ++i) 
         {
             cin >> arr[i];
