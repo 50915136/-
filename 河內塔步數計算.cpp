@@ -10,6 +10,7 @@ int hanoiSteps(int n)
     }
     // 計算步驟數，2^n - 1 為移動 n 個盤子的最小步驟數
     return (1 << n) - 1;
+    //return 2 * hanoiSteps(n - 1) + 1;，遞迴
 }
 
 int main() 
