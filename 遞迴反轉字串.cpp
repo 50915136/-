@@ -26,7 +26,8 @@ int main()
     string line;
     while (getline(cin, line)) 
     {
-        reverseHelper(line, 0, line.length() - 1);//left 設為字串開頭，right 設為字串結尾。
+        //line.length返回字串 line 的長度，也就是該字串中字符的總數。
+        reverseHelper(line, 0, line.length() - 1);//left 設為字串開頭，結尾 
         cout << line << endl;
     }
     return 0;
