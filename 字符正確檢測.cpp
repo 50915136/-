@@ -23,7 +23,7 @@ bool isValid(const string& str)
             case '(': case '[': case '{':
                 s.push(ch); // 如果是開括號，將其推入堆疊
                 break;
-            case ')':
+            case ')'://s.empty(): 檢查堆疊是否為空
                 if (s.empty() || s.top() != '(') return false;
                 s.pop(); //如果是閉括號且匹配堆疊頂部的開括號，將堆疊頂部元素彈出
                 break;
