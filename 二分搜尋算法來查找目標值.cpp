@@ -25,8 +25,9 @@ int binarySearch(const vector<int>& arr, int target)
         }
         else 
         {
-            right = mid - 1; // 搜尋左半部分
-            //目標值必定在左半部分，將 right 指標移至 mid - 1。
+            right = mid - 1; 
+            //當 arr[mid] 大於 target 時，意味著目標值 target 位於 mid 左側的部分。
+            //因為數組是有序的，所以所有大於 arr[mid] 的值都在 mid 的右側。
         }
     }
 
