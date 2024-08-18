@@ -3,18 +3,20 @@
 
 using namespace std;
 
-// 遞迴反轉字串的輔助函數
+// &str：一個參考，指向要反轉的字串。
+//left：目前要交換的左側字符的位置。
+//right：目前要交換的右側字符的位置。
 void reverseHelper(string &str, int left, int right) 
 {
-    if (left >= right) 
+    if (left >= right) //字串的反轉已經完成，整個字串已經處理完畢。
     {
         return; // 遞迴終止條件
     }
     
     // 交換字元
-    swap(str[left], str[right]);//將目前字串的左端和右端字元交換
+    swap(str[left], str[right]);//交換字串 str 中位置 left 和 right 的字符。
     
-    // 遞迴處理下一對字元
+    // 遞迴地處理下一對字符
     reverseHelper(str, left + 1, right - 1);
 }
 
