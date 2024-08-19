@@ -57,6 +57,9 @@ private:
 
         //find_if 函數查找 terms 向量中是否已經存在具有相同指數 exp 的項。
         //find_if在指定範圍內查找符合條件的元素
+        //[exp] 讓 Lambda 捕獲外部變數 exp，並將其作為條件判斷的一部分。
+        //(const Term& t) 指定 Lambda 的參數為 Term 類型的常量引用。
+      //比較 Term 的 exp 成員是否等於外部的 exp 變數，如果相等則返回 true，否則返回 false
         auto it = find_if(terms.begin(), terms.end(), [exp](const Term& t) { return t.exp == exp; });
         if (it != terms.end()) 
         {
