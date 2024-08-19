@@ -63,20 +63,24 @@ void Polynomial::newTerm(float coef, int exp)
         delete[] termsArray;
         termsArray = temp;
     }
+    //指向 Term 類型物件的指標，也就是一個動態分配的陣列，
+    //訪問 termsArray 陣列中的第 terms 個 Term 物件。
+    //可以直接讀取或修改該項目的係數值。
     termsArray[terms].coef = coef;
     termsArray[terms++].exp = exp;
 }
 
 Polynomial Polynomial::Add(Polynomial b) 
 {
-    int apos = 0, bpos = 0;
+    int apos = 0, bpos = 0;//跟蹤當前處理的 termsArray和 b.termsArray的索引。
     Polynomial c;
-    while (apos < terms && bpos < b.terms) 
+    while (apos < terms && bpos < b.terms) //循環持續執行，直到兩個多項式其中之一的所有項目都被處理完畢。
     {
         if (termsArray[apos].exp == b.termsArray[bpos].exp) 
         {
+            //係數相加，並將結果儲存在 tmp 中。自增索引以處理下一個項目
             float tmp = termsArray[apos++].coef + b.termsArray[bpos++].coef;
-            if (tmp) c.newTerm(tmp, termsArray[apos - 1].exp);
+            if (tmp) c.newTerm(tmp, termsArray[apos - 1].exp);//將其作為係數與相應的指數添加到結果多項式 c 中。
         } 
         else if (termsArray[apos].exp > b.termsArray[bpos].exp) 
         {
@@ -88,7 +92,7 @@ Polynomial Polynomial::Add(Polynomial b)
             c.newTerm(b.termsArray[bpos].coef, b.termsArray[bpos].exp);
             bpos++;
         }
-    }
+    }//當前多項式還有剩餘的項目，則將其全部添加到結果多項式 c 中。
     for (int i = apos; i < terms; i++) c.newTerm(termsArray[i].coef, termsArray[i].exp);
     for (int i = bpos; i < b.terms; i++) c.newTerm(b.termsArray[i].coef, b.termsArray[i].exp);
     return c;
@@ -97,21 +101,21 @@ Polynomial Polynomial::Add(Polynomial b)
 Polynomial Polynomial::Mult(Polynomial b) 
 {
     Polynomial c;
-    for (int apos = 0; apos < terms; apos++) 
+    for (int apos = 0; apos < terms; apos++) // 遍歷第一個多項式的每一項
     {
-        for (int bpos = 0; bpos < b.terms; bpos++) 
+        for (int bpos = 0; bpos < b.terms; bpos++) // 遍歷第二個多項式的每一項
         {
-            int Exp = termsArray[apos].exp + b.termsArray[bpos].exp, cpos = 0;
+            int Exp = termsArray[apos].exp + b.termsArray[bpos].exp, cpos = 0;//兩項相乘後的指數
             bool flag = true;
-            while (flag && cpos < c.terms) 
+            while (flag && cpos < c.terms) //查找結果多項式 c 中是否已存在相同指數的項
             {
                 if (c.termsArray[cpos].exp == Exp) 
                 {
-                    flag = false;
-                    c.termsArray[cpos].coef += termsArray[apos].coef * b.termsArray[bpos].coef;
+                    flag = false;//// 設置 flag 為 false，表示找到了
+                    c.termsArray[cpos].coef += termsArray[apos].coef * b.termsArray[bpos].coef;//係數相加
                 }
-                cpos++;
-            }
+                cpos++;//檢查下一項
+            }// 新增項，指數為 Exp，係數為兩項的係數乘積
             if (flag) c.newTerm(termsArray[apos].coef * b.termsArray[bpos].coef, Exp);
         }
     }
