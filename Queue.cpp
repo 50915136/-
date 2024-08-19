@@ -68,6 +68,7 @@ void Queue<T>::Push(const T& item)
         T* newQueue = new T[2 * capacity]; // 新容量為原容量的兩倍
         for (int i = 0; i < size; ++i) {
             newQueue[i] = queue[(front + i) % capacity]; // 複製原有元素
+            //(front + i) % capacity：可以確保當 front + i 超過原隊列容量時，索引會回到隊列的起始位置
         }
         delete[] queue; // 釋放原有數組
         queue = newQueue; // 更新隊列指標
