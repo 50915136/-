@@ -10,7 +10,8 @@ void copy(int *begin, int *end, int *result)
 
     for (int *p = begin; p != end; p++) 
     {
-        *(result + index++) = *p;//複製到 result。
+        *(result + index++) = *p;
+        //p 所指向的當前元素的值 (*p) 複製到 result 陣列中的當前位置 
     }
 
     *(result + index++) = 0;
@@ -22,7 +23,8 @@ int sizeOfDP = 1;//DP 陣列的當前大小
 
 int F(int i) 
 {
-    if (sizeOfDP > i && DP[i] > 0)//sizeOfDP 大於 i 且 DP[i] 大於 0，則直接返回 DP[i]，表示已經計算過並存儲在 DP 中。 
+    //檢查 i 是否已經計算過並存儲在 DP 陣列中，如果已經計算過則直接返回 DP[i] 的值。
+    if (sizeOfDP > i && DP[i] > 0)
     {
         return DP[i];
     }
@@ -37,7 +39,11 @@ int F(int i)
         sizeOfDP = i + 1;//更新 sizeOfDP 變數，以反映新的 DP 陣列的大小
     }
     // DP[i] = F(i-1)+F(i-2);
-    for (int j = oldSize; j < sizeOfDP; j++) DP[j] = DP[j - 1] + DP[j - 2];//從 oldSize 到 sizeOfDP 的 Fibonacci 數字，並更新 DP 陣列。
+    for (int j = oldSize; j < sizeOfDP; j++) 
+        {
+            DP[j] = DP[j - 1] + DP[j - 2];//從 oldSize 到 sizeOfDP 的 Fibonacci 數字，並更新 DP 陣列。
+        }
+        
     return DP[i];
 }
 
