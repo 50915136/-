@@ -134,7 +134,7 @@ float Polynomial::Eval(float f)
 
 void Polynomial::output() 
 {
-    bool flag = true;
+    bool flag = true;//如果 flag 在迴圈結束後仍然為 true，則表示多項式是零多項式，即沒有任何項目。
     for (int i = 0; i < terms; i++) 
     {
         flag = false;
@@ -143,7 +143,7 @@ void Polynomial::output()
             cout << termsArray[i].coef;
         } 
         else if (i == terms - 1) 
-        {
+        {//當前項是最後一項 (i == terms - 1)，則不需要在後面加 + 號。
             if (termsArray[i].exp == 1)
                 cout << termsArray[i].coef << "x";
             else
@@ -157,6 +157,7 @@ void Polynomial::output()
                 cout << termsArray[i].coef << "x^" << termsArray[i].exp << "+";
         }
     }
+    //如果 flag 仍然為 true，表示多項式中沒有任何項目被輸出，因此輸出 0 表示零多項式。
     if (flag) cout << "0";
     cout << "\n";
 }
