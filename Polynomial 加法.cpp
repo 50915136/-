@@ -12,8 +12,8 @@ public:
 
     Term(int c = 0, int e = 0) : coef(c), exp(e) {}//初始化係數和指數。
 
-    // 用於排序
-    bool operator<(const Term& other) const 
+    // 用於排序，宣告 Term 類別內重載 < 運算符。接受另一個 Term 類的物件作為參數，並返回 bool 類型的結果。
+    bool operator<(const Term& other) const //const 表示這個函數不會修改類別的任何成員變數。
     {
         return exp > other.exp; // 重載小於運算符，用於根據指數對 Term 進行排序，指數從大到小。
     }
