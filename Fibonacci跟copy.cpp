@@ -11,7 +11,7 @@ void copy(int *begin, int *end, int *result)
     for (int *p = begin; p != end; p++) 
     {
         *(result + index++) = *p;
-        //p 所指向的當前元素的值 (*p) 複製到 result 陣列中的當前位置 
+        //將 *p 的值複製到 result 陣列的當前位置，然後將 index 增加 1，移動到下一個位置。
     }
 
     *(result + index++) = 0;
