@@ -1,5 +1,5 @@
 #include <math.h>
-
+#include <algorithm>
 #include <iostream>
 using namespace std;
 
