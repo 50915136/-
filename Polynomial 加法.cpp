@@ -61,16 +61,18 @@ private:
         //(const Term& t) 指定 Lambda 的參數為 Term 類型的常量引用。
       //比較 Term 的 exp 成員是否等於外部的 exp 變數，如果相等則返回 true，否則返回 false
         auto it = find_if(terms.begin(), terms.end(), [exp](const Term& t) { return t.exp == exp; });
-        if (it != terms.end()) 
+        if (it != terms.end()) //如果找到了，it 將指向該項目；否則，it 會等於 terms.end()，表示沒有找到。
         {
             it->coef += coef;//找到的項的係數與新係數 coef 相加。
             if (it->coef == 0) 
             {
+                //刪除 vector 中的指定元素
                 terms.erase(it); // 移除係數為 0 的項。
             }
         } 
         else 
         {
+            //將元素添加到 vector 的末尾。
             terms.push_back(Term(coef, exp));//新的 Term 物件（包含係數和指數）添加到 terms 向量中。
         }
     }
@@ -81,7 +83,7 @@ public:
     // 初始化 Polynomial 類別
     Polynomial(const vector<int>& coefficients, const vector<int>& exponents) //初始化多項式，根據係數和指數創建項目，並對項目進行排序。
     {
-        for (size_t i = 0; i < coefficients.size(); ++i) //遍歷係數和指數的向量
+        for (size_t i = 0; i < coefficients.size(); ++i) //size_t用於表示容器的大小，迴圈索引遍歷係數和指數的向量
         {
             addTerm(coefficients[i], exponents[i]);//係數和指數添加到多項式中
         }
